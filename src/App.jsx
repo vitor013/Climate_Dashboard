@@ -1,81 +1,39 @@
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
-function App() {
-const [cidade, setCidade] = useState(''); 
-const [buscar, setBuscar] = useState('');
-const [dadosDoClima, setDadosDoClima] = useState ('');
-const [carregando, setCarregando] = useState ('');
-const [erro, setErro] = useState ('');
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Register from "./pages/Register";
 
-function handleSubmit(e) {
-  e.preventDefault();
-  if (cidade.trim() !== '') {
-    setBuscar(cidade);
-    setCidade("");
-  }
+function RotasProtegidas({ children }) {
+  const { usuario } = useAuth();
+  return usuario ? children : <Navigate to="/login" />;
 }
 
-useEffect(() => {
-  if (!buscar) return;
-
-  setCarregando(true);
-  setErro(null);
-
-  fetch(`http://localhost:3001/clima?cidade=${buscar}`)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error('Cidade não encontrada');
-      }
-      return res.json();
-    })
-    .then(data => {
-      setDadosDoClima(data);
-    })
-    .catch(err => {
-      setErro(err.message);
-      setDadosDoClima(null);
-    })
-    .finally(() => {
-      setCarregando(false);
-    });
-}, [buscar]);
-
-
+function AppRoutes() {
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial" }}>
-      <h1>🌤️ Dashboard de Clima</h1>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Digite o nome da cidade"
-          value={cidade}
-          onChange={(e) => setCidade(e.target.value)}
-        />
-        <button type="submit">Buscar</button>
-      </form>
-
-      {carregando && <p>Carregando...</p>}
-
-      {erro && <p style={{ color: "red" }}>{erro}</p>}
-
-      {dadosDoClima && (
-        <div style={{ marginTop: "1rem" }}>
-          <h2>
-            {dadosDoClima.name}, {dadosDoClima.sys.country}
-          </h2>
-          <p>🌡️ Temperatura: {dadosDoClima.main.temp} °C</p>
-          <p>🥵 Sensação térmica: {dadosDoClima.main.feels_like} °C</p>
-          <p>☁️ Clima: {dadosDoClima.weather[0].description}</p>
-          <img
-            src={`https://openweathermap.org/img/wn/${dadosDoClima.weather[0].icon}@2x.png`}
-            alt={dadosDoClima.weather[0].description}
-          />
-        </div>
-      )}
-    </div>
-);
-
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/Register" element={<Register />} />
+      <Route
+        path="/dashboard"
+        element={
+          <RotasProtegidas>
+            <Dashboard />
+          </RotasProtegidas>
+        }
+      />
+      <Route path="*" element={<Navigate to="/login" />} />
+    </Routes>
+  );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </AuthProvider>
+  );
+}
