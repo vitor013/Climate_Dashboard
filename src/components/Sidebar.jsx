@@ -1,6 +1,4 @@
-import { NavLink } from "react-router-dom";
-
-export default function Sidebar() {
+export default function Sidebar({ abaAtiva, setAbaAtiva }) {
   const sidebarStyle = {
     width: "220px",
     height: "100vh",
@@ -18,6 +16,11 @@ export default function Sidebar() {
     padding: "0.5rem 1rem",
     marginBottom: "0.5rem",
     borderRadius: "4px",
+    backgroundColor: "transparent",
+    border: "none",
+    textAlign: "left",
+    cursor: "pointer",
+    fontSize: "1rem",
   };
 
   const activeLinkStyle = {
@@ -28,32 +31,27 @@ export default function Sidebar() {
     <nav style={sidebarStyle}>
       <h2 style={{ marginBottom: "1rem" }}>Menu</h2>
 
-      <NavLink
-        to="/dashboard"
-        style={({ isActive }) =>
-          isActive ? { ...linkStyle, ...activeLinkStyle } : linkStyle
+      <button
+        onClick={() => setAbaAtiva("clima")}
+        style={
+          abaAtiva === "clima"
+            ? { ...linkStyle, ...activeLinkStyle }
+            : linkStyle
         }
       >
         Dashboard
-      </NavLink>
+      </button>
 
-      <NavLink
-        to="/perfil"
-        style={({ isActive }) =>
-          isActive ? { ...linkStyle, ...activeLinkStyle } : linkStyle
+      <button
+        onClick={() => setAbaAtiva("perfil")}
+        style={
+          abaAtiva === "perfil"
+            ? { ...linkStyle, ...activeLinkStyle }
+            : linkStyle
         }
       >
         Perfil
-      </NavLink>
-
-      <NavLink
-        to="/configuracoes"
-        style={({ isActive }) =>
-          isActive ? { ...linkStyle, ...activeLinkStyle } : linkStyle
-        }
-      >
-        Configurações
-      </NavLink>
+      </button>
     </nav>
   );
 }

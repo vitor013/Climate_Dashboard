@@ -11,7 +11,10 @@ export default function Login() {
 
         <p style={{ marginTop: "1rem", textAlign: "center" }}>
           Não tem conta?{" "}
-          <Link to="/Register" style={{ color: "#2563eb", textDecoration: "none" }}>
+          <Link
+            to="/Register"
+            style={{ color: "#2563eb", textDecoration: "none" }}
+          >
             Cadastre-se aqui
           </Link>
         </p>

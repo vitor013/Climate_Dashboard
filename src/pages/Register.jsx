@@ -15,7 +15,8 @@ export default function Register() {
     if (!nome || !email || !senha) {
       setErro("Preencha todos os campos!");
       return;
-    }3
+    }
+    3;
 
     setErro(null);
     setTimeout(() => {
@@ -29,33 +30,36 @@ export default function Register() {
       <h2>Cadastro</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: 12 }}>
-          <label>Nome:</label><br />
+          <label>Nome:</label>
+          <br />
           <input
             type="text"
             value={nome}
-            onChange={e => setNome(e.target.value)}
+            onChange={(e) => setNome(e.target.value)}
             style={{ width: "100%", padding: 8 }}
             placeholder="Seu nome"
           />
         </div>
 
         <div style={{ marginBottom: 12 }}>
-          <label>Email:</label><br />
+          <label>Email:</label>
+          <br />
           <input
             type="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             style={{ width: "100%", padding: 8 }}
             placeholder="email@exemplo.com"
           />
         </div>
 
         <div style={{ marginBottom: 12 }}>
-          <label>Senha:</label><br />
+          <label>Senha:</label>
+          <br />
           <input
             type="password"
             value={senha}
-            onChange={e => setSenha(e.target.value)}
+            onChange={(e) => setSenha(e.target.value)}
             style={{ width: "100%", padding: 8 }}
             placeholder="Senha"
           />
@@ -73,7 +77,7 @@ export default function Register() {
             color: "white",
             fontWeight: "bold",
             cursor: "pointer",
-            borderRadius: 6
+            borderRadius: 6,
           }}
         >
           Cadastrar
