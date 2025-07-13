@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { login as loginAPI } from "../api/auth";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -13,11 +14,17 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (email === "123@123" && senha === "123") {
-      login("token-falso-123");
-      navigate("/dashboard");
-    } else {
-      setErro("E-mail ou senha inválidos");
+    try {
+      const resposta = await loginAPI(email, senha);
+
+      if (resposta.msg === "Login realizado com sucesso") {
+        login("usuario-autenticado");
+        navigate("/dashboard");
+      } else {
+        setErro(resposta.msg || "Erro ao fazer login");
+      }
+    } catch (err) {
+      setErro("Erro na conexão com o servidor");
     }
   };
 

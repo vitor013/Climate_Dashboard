@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { register } from "../api/auth";
 
 export default function Register() {
   const [nome, setNome] = useState("");
@@ -9,20 +10,26 @@ export default function Register() {
 
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (!nome || !email || !senha) {
       setErro("Preencha todos os campos!");
       return;
     }
-    3;
-
     setErro(null);
-    setTimeout(() => {
-      alert("Cadastro realizado com sucesso!");
-      navigate("/login");
-    }, 1500);
+
+    try {
+      const resposta = await register(email, senha, nome);
+
+      if (resposta.msg === "Usuário registrado com sucesso") {
+        navigate("/login");
+      } else {
+        setErro(resposta.msg || "Erro ao cadastrar");
+      }
+    } catch (err) {
+      setErro("Erro na conexão com o servidor");
+    }
   }
 
   return (
