@@ -1,0 +1,14 @@
+.logout-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--cor-erro);
+  color: var(--cor-branco);
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: var(--cor-erro-hover);
+}

@@ -1,5 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "./LogoutButton.css";
 
 export default function LogoutButton() {
   const { logout } = useAuth();
@@ -11,17 +12,7 @@ export default function LogoutButton() {
   }
 
   return (
-    <button
-      onClick={handleLogout}
-      style={{
-        padding: "0.5rem 1rem",
-        backgroundColor: "#ef4444",
-        border: "none",
-        color: "white",
-        borderRadius: "6px",
-        cursor: "pointer",
-      }}
-    >
+    <button className="logout-button" onClick={handleLogout}>
       Sair
     </button>
   );

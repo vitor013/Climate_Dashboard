@@ -1,0 +1,88 @@
+.dashboard-layout {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.dashboard-main {
+  padding: 2rem;
+  font-family: var(--fonte-principal);
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: var(--cor-fundo-claro);
+}
+
+.dashboard-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.city-form {
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.city-form input {
+  padding: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--cor-branco);
+}
+
+.city-form button {
+  padding: 0.5rem 1.2rem;
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.city-form button:hover {
+  background-color: var(--cor-primaria-escura);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.erro {
+  color: var(--cor-erro);
+  margin-top: 1rem;
+}
+
+.clima-box {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--cor-branco);
+  border-radius: 10px;
+  box-shadow: var(--sombra-card);
+  text-align: center;
+}
+
+.clima-local {
+  position: absolute;
+  top: 80px;
+  left: 240px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 0.9rem;
+  z-index: 999;
+}
+
+.clima-local img {
+  margin-top: 4px;
+  width: 40px;
+}

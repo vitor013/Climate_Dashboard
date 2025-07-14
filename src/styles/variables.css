@@ -1,0 +1,20 @@
+:root {
+  /* Cores principais */
+  --cor-primaria: #4e74c8;
+  --cor-primaria-escura: #1e3a8a;
+  --cor-secundaria: #112733;
+  --cor-fundo-claro: #f9fafb;
+  --cor-branco: #ffffff;
+
+  /* 🚦 Cores de status */
+  --cor-erro: #ef4444;
+  --cor-erro-hover: #dc2626;
+  --cor-sucesso: #22c55e;
+  --cor-alerta: #fef08a;
+
+  /* Tipografia */
+  --fonte-principal: Arial, sans-serif;
+
+  /* Sombreamento */
+  --sombra-card: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

@@ -9,6 +9,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
+import CookieConsent from "./components/CookieConsent";
 
 function RotasProtegidas({ children }) {
   const { usuario } = useAuth();
@@ -36,6 +37,7 @@ function AppRoutes() {
 export default function App() {
   return (
     <AuthProvider>
+      <CookieConsent />
       <Router>
         <AppRoutes />
       </Router>

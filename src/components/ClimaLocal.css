@@ -1,0 +1,14 @@
+.clima-local {
+  position: absolute;
+  top: 1rem;
+  right: 5.5rem;
+  background-color: var(--cor-branco);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: var(--sombra-card);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 10;
+}
